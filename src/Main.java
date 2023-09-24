@@ -1,19 +1,17 @@
 public class Main {
 
     public static void main(String[] args) {
-        Desenvolvedor dev = new Desenvolvedor("Pedro", 3500);
-        Gerente gen = new Gerente("André", 7000);
 
-        imprimirSalarioComHoraExtra(dev, 10.0);
-        imprimirSalarioComHoraExtra(gen, 10.0);
+        sendOvertimeSalary(new Developer("Pedro", 3500), 10.0, 7.5);
+        sendOvertimeSalary(new Manager("André", 7000), 10.0, 15);
     }
 
-    private static void imprimirSalarioComHoraExtra(Funcionario funcionario, double horasExtras) {
+    private static void sendOvertimeSalary(Employee employee, double extraHours, double otValor) {
         try {
-            double salarioTotal = funcionario.calcularHoraExtra(horasExtras);
-            System.out.println("Meu nome é " + funcionario.getNome() + " e eu ganhei R$" + salarioTotal + " no total.");
+            double salarioTotal = employee.getOvertime(extraHours, otValor);
+            System.out.println("Meu nome é " + employee.getName() + " e eu ganhei R$" + salarioTotal + " no total.");
         } catch (IllegalArgumentException e) {
-            System.err.println("Erro: " + e.getMessage());
+            System.out.println("Erro: " + e.getMessage());
         }
     }
 }
